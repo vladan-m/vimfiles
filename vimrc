@@ -222,10 +222,18 @@ if has("statusline") && !&cp
   set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
 endif
 
-hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189
-hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153
-hi User1 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=159
-hi User2 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=16
-hi User3 term=inverse,bold cterm=NONE ctermbg=24
-hi User4 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=221
-hi User5 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=209
+" colors from http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" hi x024_DeepSkyBlue4 ctermfg=24 guifg=#005f87 "rgb=0,95,135
+" hi x189_LightSteelBlue1 ctermfg=189 guifg=#d7d7ff "rgb=215,215,255
+" hi x153_LightSkyBlue1 ctermfg=153 guifg=#afd7ff "rgb=175,215,255
+" hi x159_PaleTurquoise1 ctermfg=159 guifg=#afffff "rgb=175,255,255
+" hi x016_Grey0 ctermfg=16 guifg=#000000 "rgb=0,0,0
+" hi x029_SpringGreen4 ctermfg=29 guifg=#00875f "rgb=0,135,95
+
+hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189 guifg=#005f87 guibg=#d7d7ff
+hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153 guifg=#005f87 guibg=#afffff
+hi User1 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=159 guifg=#00875 guibg=#afffff
+hi User2 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=16 guifg=#00875f guibg=#000000
+hi User3 term=inverse,bold cterm=NONE ctermbg=24 guifg=#005f87
+hi User4 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=221 guifg=#005f87 guibg=#ffd75f
+hi User5 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=209 guifg=#005f87 guibg=#ff875f
