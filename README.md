@@ -30,8 +30,9 @@ files inside the ".vim" directory.
 * incremental, case-insensitive search
 * vertical split goes right, horizontal split goes below
 * cursor keys for movement are disabled!
+* `<leader>` is re-mapped from `\` into `,`
 
-* `<leader>h` - remove highlighting after search
+* `,h` - remove highlighting after search
 * `<Space>` - toggle current fold
 * `<C-j/k/h/l>` - switch between splits (no need to prepend `<C-w>`)
 * `Q` - format lines
@@ -54,8 +55,8 @@ files inside the ".vim" directory.
 
 ### Ack
 
-* `<leader>a` - open new tab and start search
-* `<leader>A` - open new tabs and start search from selected word
+* `,a` - open a new tab and search for something
+* `,A` - immediately search for the word under the cursor in a new tab
 
 In the quickfix window:
 
