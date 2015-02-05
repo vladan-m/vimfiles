@@ -1,15 +1,12 @@
-Mislav's vim configuration
-==========================
+# vim configuration
 
-Thanks to these guys:
+Thanks to:
 
-* [Gary Bernhardt](http://destroyallsoftware.com),
+* [Mislav Marohnić](http://mislav.uniqpath.com/),
 * [Drew Neil](http://vimcasts.org),
 * [Tim Pope](http://tbaggery.com),
-* and the [Janus project](https://github.com/carlhuda/janus).
 
 My configuration uses [Pathogen](https://github.com/tpope/vim-pathogen) and git submodules.
-(But you don't need to care about any of that.)
 
 ## Installation:
 
@@ -18,7 +15,7 @@ Prerequisites: ruby, git.
 1. Move your existing configuration somewhere else:  
    `mv ~/.vim* ~/.gvim* my_backup`
 2. Clone this repo into ".vim":  
-   `git clone https://github.com/mislav/vimfiles ~/.vim`
+   `git clone git@github.com:vladan-m/vimfiles.git ~/.vim`
 3. Go into ".vim" and run "rake":  
    `cd ~/.vim && rake`
 
@@ -34,7 +31,7 @@ files inside the ".vim" directory.
 * vertical split goes right, horizontal split goes below
 * cursor keys for movement are disabled!
 
-* `<CR>` - remove highlighting after search
+* `<leader>h` - remove highlighting after search
 * `<Space>` - toggle current fold
 * `<C-j/k/h/l>` - switch between splits (no need to prepend `<C-w>`)
 * `Q` - format lines
@@ -57,10 +54,8 @@ files inside the ".vim" directory.
 
 ### Ack
 
-* `:Ack -w foo_bar`
-* `:Ack!` - search, but don't jump to first match
-* `:AckFromSearch`
-* `:AckAdd` - append to existing quickfix list
+* `<leader>a` - open new tab and start search
+* `<leader>A` - open new tabs and start search from selected word
 
 In the quickfix window:
 
@@ -72,10 +67,9 @@ In the quickfix window:
 
 In the normal buffer:
 
-* `:cn[ext]`/`:cN/:cp[revious]` - jump to the next/previous match
-* `]q`/`[q` - same as above, with Unimpaired
+* `j`/`k` - jump to the next/previous match
 * `:ccl` - close the quickfix window
-* `:col[der]`/`:cnew[er]` - show results of previous/next search
+* `<CR>` - show results of previous/next search
 
 ### Surround
 
@@ -94,12 +88,6 @@ Surround + rails.vim:
 * `#` → `<%# %>`
 * `e` - nest block and append `end` keyword
 * `E` - like `e`, but prompt for text to prepend before block
-
-### Argumentative
-
-* `[,`/`],` - go to previous/next argument boundary
-* `<,`/`>,` - shift current argument left/right
-* `a,`/`i,` - "an argument"/"inner argument" text object
 
 ### Commentary
 
@@ -124,25 +112,10 @@ Text objects:
 * `aM` - a class
 * `iM` - inner class
 
-### CoffeeScript
-
-* `:[range]CoffeeCompile [vert]` - compile JavaScript into new buffer
-* `:CoffeeCompile watch [vert]` - open auto-updating JavaScript buffer
-* `:[range]CoffeeLint` (needs `coffeelint`)
-* `:[range]CoffeeRun` - run the resulting JavaScript
-
 ### matchit.vim
 
 `%` alternates between matching HTML tags, class/control flow statements and
 matching `end` in Ruby, and more. Also works in visual mode.
-
-### Tabular
-
-In visual mode:
-
-* `:Tabularize assignment`
-* `:Tabularize argument_list`
-* `:Tabularize /=>`
 
 ### Fugitive
 
@@ -190,55 +163,3 @@ In vimdiff view:
 * `:do //2`/`:do //3` - resolve conflict using the version from target/merge branch
 * `:diffu[pdate]` - refresh diff highlighting
 * `:on[ly]`,`<C-w>o` - close windows other than the current one
-
-### Unimpaired
-
-* `[a`/`]a` - `:previous`/`:next`
-* `[A`/`]A` - `:first`/`:last`
-* `[q`/`]q` - `:cprev`/`:cnext`
-* `[Q`/`]Q` - `:cfirst`/`:clast`
-
-* `[n`/`]n` - previous/next conflict marker
-* `[<Space>`/`]<Space>` - add blank lines above/below the cursor
-
-* `[o{opt}`/`]o{opt}`/`co{opt}` - turn on/turn off/toggle option:
-  * `h` - "hlsearch"
-  * `i` - "ignorecase"
-  * `s` - "spell"
-  * `w` - "wrap"
-
-* `yp/P/o/O/I/A` enters insert mode as with `a/i/o/O/I/A` and sets `paste`.
-  Leaving insert mode sets 'nopaste' automatically.
-
-### Eunuch
-
-* `:Rename[!]`
-* `:SudoWrite`
-* `:Remove[!]`
-* `:Find[!] {args}` - run `find` and load results into quickfix
-* when you create a file that starts with a shebang, it gets `chmod +x`
-  automatically on first save!
-
-### Scriptease
-
-* `:Vedit` - quickly open a Vim runtime file
-  * `:Vsplit`
-  * `:Vvsplit`
-  * `:Vtabedit`
-  * `:Vpedit`
-  * `:Vread`
-* `:Runtime` - reload runtime files
-* `g!` - eval a motion or selection as VimL and replace it with the result
-
-Example:
-
-    :Vsp s/pd<Tab>
-
-### Tbone
-
-* `:Tmux [args]` - execute a tmux command
-* `:[range]Tyank/:Tput [buffer]` - access to tmux buffer
-* `:[range]Twrite [pane]` - `tmux send-keys` to another pane
-
-Examples how to specify a pane: windowtitle.2, top-right, or last; or let it
-default to the previously given argument.
