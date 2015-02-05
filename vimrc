@@ -16,22 +16,25 @@ filetype plugin indent on
 runtime macros/matchit.vim  " enables % to cycle through `if/else/endif`
 
 syntax enable
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
-color railscasts
+
+filetype plugin on          " enable markdown preview
+
+set background=dark
+
+color gruvbox
 set synmaxcol=800           " don't try to highlight long lines
 
-set nonumber    " line numbers aren't needed
+set number      " line numbers aren't needed
 set ruler       " show the cursor position all the time
 set cursorline  " highlight the line of the cursor
 set showcmd     " show partial commands below the status line
 set shell=bash  " avoids munging PATH under zsh
 let g:is_bash=1 " default shell syntax
-set history=200 " remember more Ex commands
+set history=1000 " remember more Ex commands
 set scrolloff=3 " have some context around the current line always on screen
+
+" Enable CSS autocomplete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Allow backgrounding buffers without writing them, and remember marks/undo
 " for backgrounded buffers
@@ -50,6 +53,7 @@ set backupskip=/tmp/*,/private/tmp/*"
 set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set softtabstop=2                 " use tabs when deleting empty space
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
@@ -128,13 +132,13 @@ augroup END
 " don't use Ex mode, use Q for formatting
 map Q gq
 
-" clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
-
 " toggle the current fold
 :nnoremap <Space> za
 
 let mapleader=","
+
+" clear the search buffer
+noremap <leader>h :nohlsearch<CR>
 
 " yank to system clipboard
 map <leader>y "*y
@@ -153,13 +157,14 @@ map <leader>f :CommandT<cr>
 map <leader>F :CommandT %%<cr>
 
 let g:CommandTMatchWindowAtTop=1
-let g:CommandTMaxHeight=10
+let g:CommandTMaxHeight=20
 let g:CommandTMinHeight=2
 
-let g:turbux_command_test_unit = 'ruby -Ilib:test'
-" let g:turbux_command_cucumber = 'cucumber -f progress'
+" Open a new tab and search for something.
+nmap <leader>a :tab split<CR>:Ack ""<Left>
 
-let g:ackprg = 'ag --nogroup --nocolor --column -i'
+" Immediately search for the word under the cursor in a new tab.
+nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 
 " In command-line mode, C-a jumps to beginning (to match C-e)
 cnoremap <C-a> <Home>
@@ -222,18 +227,6 @@ if has("statusline") && !&cp
   set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
 endif
 
-" colors from http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-" hi x024_DeepSkyBlue4 ctermfg=24 guifg=#005f87 "rgb=0,95,135
-" hi x189_LightSteelBlue1 ctermfg=189 guifg=#d7d7ff "rgb=215,215,255
-" hi x153_LightSkyBlue1 ctermfg=153 guifg=#afd7ff "rgb=175,215,255
-" hi x159_PaleTurquoise1 ctermfg=159 guifg=#afffff "rgb=175,255,255
-" hi x016_Grey0 ctermfg=16 guifg=#000000 "rgb=0,0,0
-" hi x029_SpringGreen4 ctermfg=29 guifg=#00875f "rgb=0,135,95
-
-hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189 guifg=#005f87 guibg=#d7d7ff
-hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153 guifg=#005f87 guibg=#afffff
-hi User1 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=159 guifg=#00875 guibg=#afffff
-hi User2 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=16 guifg=#00875f guibg=#000000
-hi User3 term=inverse,bold cterm=NONE ctermbg=24 guifg=#005f87
-hi User4 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=221 guifg=#005f87 guibg=#ffd75f
-hi User5 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=209 guifg=#005f87 guibg=#ff875f
+" Nerd Tree
+inoremap <f2> <esc>:NERDTreeToggle<cr>
+nnoremap <f2> <esc>:NERDTreeToggle<cr>
